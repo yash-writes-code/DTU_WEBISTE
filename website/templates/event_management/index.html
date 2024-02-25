@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Paid </h1>
+<ul>
+    {% for Event in Events %}
+        {% if Event.payment_status == 1 %}
+            <li>{{ Event.name_of_dept }}</li>
+        {% endif %}
+    {% endfor %}
+</ul>
+
+<h1> Unpaid </h1>
+<ul>
+    {% for Event in Events %}
+        {% if Event.payment_status != 1 %}
+            <li>{{ Event.name_of_dept }}</li>
+        {% endif %}
+    {% endfor %}
+</ul>
+
+
+</body>
+</html>
