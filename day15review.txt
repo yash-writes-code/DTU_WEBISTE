@@ -1,0 +1,8 @@
+day 11,12 of 30daysofcode.
+
+I just want to review what i learnt in all this time
+so here's a list:
+
+1. Got more comfortable with using css flexbox
+2. Got to know about ::after and ::before in css and used them
+3. Learnt basics of next
