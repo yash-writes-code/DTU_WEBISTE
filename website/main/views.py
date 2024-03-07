@@ -15,7 +15,7 @@ def staff_details(request):
     return render(request,"main/staff.html")
 
 def downloads(request,page):
-    articles=Article.objects.all().order_by("-uploaded_at")
+    articles=Article.objects.all().order_by("-uploaded_at").filter(notice_type=1)
     paginator=Paginator(articles,10)
     page_object = paginator.get_page(page)
     context = {"page_obj": page_object}

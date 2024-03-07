@@ -10,5 +10,6 @@ urlpatterns=[
     path("contact/",contact),
     path("gastaff/",staff_details),
     path("dashboard/",dashboard),
-    path("download_file/<int:path>",download_file,name="download_file")
+    path("download_file/<int:path>",download_file,name="download_file"),
+    
 ]
