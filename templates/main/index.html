@@ -1,0 +1,76 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %} Homepage{% endblock title %}
+{%block body%}<div class="grid-item item2"><h1>Welcome to the webpage of general administration</h1>
+        
+  <p>General Administration is undeniably one of the foundational pillars of any university, seamlessly facilitating its operations with a myriad of indispensable services. Among these essential services are the provision of outsourced manpower, crucial for maintaining the day-to-day functioning of various departments and ensuring smooth operations across the campus. Additionally, the cleaning manpower provided by the General Administration ensures a hygienic and conducive environment for both students and faculty members alike, promoting a healthy and productive academic atmosphere.
+
+    Furthermore, the General Administration branch extends its support through the management of EPBX systems, facilitating effective communication channels within the university community. Moreover, the administration diligently handles the reimbursement of bills for basic facilities availed by faculty members and officers, ensuring their essential needs are met promptly and efficiently. This commitment to service extends to the arrangement of hospitality for visiting dignitaries and guests, reflecting the university's commitment to fostering meaningful connections and collaborations.
+    
+    Beyond these tangible services, the General Administration branch also plays a pivotal role in organizing university functions and events, ensuring their seamless execution from conception to completion. Each member of the General Administration team is dedicated to serving the university community with passion and a warm smile, embodying the ethos of hospitality and professionalism.
+    
+    Moreover, the General Administration branch operates in alignment with the core values of the university, upholding principles of integrity, excellence, and inclusivity in all its endeavors. It is not merely a duty but a privilege for the staff to contribute towards fulfilling the vision and mission of the university, striving to exceed expectations and set new standards of service excellence.
+    
+    In essence, the General Administration branch serves as the backbone of the university, tirelessly working behind the scenes to support and enhance the academic and administrative endeavors of the institution. With their unwavering dedication and commitment to excellence, the staff of the General Administration branch exemplify the spirit of service and contribute significantly to the overall success and reputation of the university.
+  </p>
+  
+  <div class="slideshow-container">
+
+    <div class="mySlides fade">
+      <img src="{% static 'images/dtu1.png'%}" style="width:100%; height:400px">
+    </div>
+    
+    <div class="mySlides fade">
+      <img src="{% static 'images/dtu2.png'%}" style="width:100%; height:400px">
+    </div>
+    
+    <div class="mySlides fade">
+      <img src="{% static 'images/dtu3.png'%}" style="width:100%; height:400px">
+    </div>
+    
+    </div>
+    <br>
+    
+    <div style="text-align:center">
+      <span class="dot"></span> 
+      <span class="dot"></span> 
+      <span class="dot"></span> 
+    </div>
+
+    <footer>Happy to Serve DTU Community</footer>
+</div>
+
+{% comment %} <script type="javascript" href="{% static 'javascript/script.js' %}"> {% endcomment %}
+  {% endblock body %}
+
+
+{% block script %}
+
+
+    console.log("hello");
+
+    let slideIndex = 0;
+    showSlides();
+    
+    function showSlides() {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        let dots = document.getElementsByClassName("dot");
+        for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {slideIndex = 1}    
+        for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";  
+        dots[slideIndex-1].className += " active";
+        setTimeout(showSlides, 2000); // Change image every 2 seconds
+    }
+    
+
+{% endblock script %}
+  
+

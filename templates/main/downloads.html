@@ -1,0 +1,44 @@
+{% extends "main/base.html" %}
+
+{% block title %} Contact{% endblock title %}
+
+{% block body %}
+<div class="grid-item item2">
+    {% with articles=page_obj.object_list.all %}
+    ARTICLES:
+    <table border="1px">
+        <tr>
+            <th>Description</th>
+            <th>Date</th>
+            <th>file</th>
+        <tr>
+        {% for article in articles %}
+        
+            <td>
+                <p>{{article.descr}}</p>
+            </td>
+            <td>
+                {{article.uploaded_at}}
+            </td>
+            <td><a href="{% url 'main:download_file' article.id %}">
+                download
+            </a></td>
+            
+        </tr>
+        {% endfor %}
+    </table>
+    {% endwith %}    
+
+    {% block pagination %}
+    {% for page_number in page_obj.paginator.page_range %}
+        <a
+            href="{% url 'main:downloads' page_number %}"
+            class="{% if page_number == page_obj.number %}current{% endif %}"
+        >
+            {{page_number}}
+        </a>
+    {% endfor %}
+{% endblock %}
+<footer>Happy to Serve DTU Community</footer>
+    </div>  
+{% endblock body %}
