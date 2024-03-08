@@ -5,6 +5,7 @@ class Article(models.Model):
     descr=models.CharField(max_length=100)
     file=models.FileField(upload_to="uploads/")
     uploaded_at=models.DateField(auto_now_add=True)
-                    
+    notice_type=models.IntegerField(default=True,choices=((1,"Main Notice"),(0,"Side Notice"))) 
+    
     def __str__(self):
         return self.descr

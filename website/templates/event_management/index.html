@@ -1,3 +1,52 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Paid</h1>
+    <Table border="1px">
+
+        <tr>
+            <th>Name Of Department</th>
+            <th>Date Of Indent</th>
+            <th>Payment Status</th>
+        </tr>
+        <tr>
+        {% for Event in Events %}
+        {% if Event.payment_status == 1 %}
+            <td>{{ Event.name_of_dept }}</td>
+            <td>{{Event.date_of_indent}}</td>
+            <td><input type="checkbox" name="" id="" checked="checked"></td>
+        {% endif %}
+    {% endfor %}
+    </Table>
+
+<h1> Unpaid </h1>
+<Table border="1px">
+
+    <tr>
+        <th>Name Of Department</th>
+        <th>Date Of Indent</th>
+        <th>Payment Status</th>
+    </tr>
+    <tr>
+    {% for Event in Events %}
+    {% if Event.payment_status == 0 %}
+        <td>{{ Event.name_of_dept }}</td>
+        <td>{{Event.date_of_indent}}</td>
+        <td><input type="checkbox" name="" id=""></td>
+    {% endif %}
+{% endfor %}
+</Table>
+
+
+</body>
+</html> -->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,24 +55,67 @@
     <title>Document</title>
 </head>
 <body>
-    <h1> Paid </h1>
-<ul>
-    {% for Event in Events %}
-        {% if Event.payment_status == 1 %}
-            <li>{{ Event.name_of_dept }}</li>
-        {% endif %}
-    {% endfor %}
-</ul>
+    <h1>Paid</h1>
+    <Table border="1px">
+        <tr>
+            <th>Name Of Department</th>
+            <th>Date Of Indent</th>
+            <th>Payment Status</th>
+        </tr>
+        {% for Event in Events %}
+            {% if Event.payment_status == 1 %}
+                <tr>
+                    <td>{{ Event.name_of_dept }}</td>
+                    <td>{{ Event.date_of_indent }}</td>
+                    <td>
+                        <input type="checkbox" name="event_ids" value="{{ Event.id }}" id="event_{{ Event.id }}" checked disabled>
+                        <input type="hidden" name="payment_status_{{ Event.id }}" value="{{ Event.payment_status }}">
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </Table>
 
-<h1> Unpaid </h1>
-<ul>
-    {% for Event in Events %}
-        {% if Event.payment_status != 1 %}
-            <li>{{ Event.name_of_dept }}</li>
-        {% endif %}
-    {% endfor %}
-</ul>
+    <h1>Unpaid</h1>
+    <form method="post" action="{% url 'event_management:dashboard' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <Table border="1px">
+            <tr>
+                <th>Name Of Department</th>
+                <th>Date Of Indent</th>
+                <th>Payment Status</th>
+                <th>Attach Bill</th>
+            </tr>
+            {% for Event in Events %}
+                {% if Event.payment_status == 0 %}
+                    <tr>
+                        <td>{{ Event.name_of_dept }}</td>
+                        <td>{{ Event.date_of_indent }}</td>
+                        <td>
+                            <input type="checkbox" name="event_ids" value="{{ Event.id }}" id="checkbox">
+                            <input type="hidden" name="payment_status_{{ Event.id }}" id="payment_status" value="{{ Event.payment_status}}">
+                        </td>
+                        <td>
+                            <input type="file" name="bill_{{ Event.id }}" accept=".pdf,.jpg,.png">
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </Table>
+        <button type="submit">Mark as Paid</button>
+    </form>
 
-
+   
+<script>
+        // Get the checkbox and hidden input elements
+        var checkCheckbox = document.getElementById('checkbox');
+        var paymentStatusInput = document.getElementById('payment_status');
+      
+        // Add an event listener to the checkbox
+        checkCheckbox.addEventListener('change', function() {
+          // Set the value of the hidden input based on the checked state of the checkbox
+          paymentStatusInput.value = this.checked ? 1 : 0;
+        });
+      </script>
 </body>
 </html>
