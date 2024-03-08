@@ -2,7 +2,7 @@
 from functools import wraps
 from django.contrib.auth.decorators import user_passes_test
 
-def admin_required(view_func,*args, **kwargs):
+def admin_required(view_func):
     """
     Custom decorator to check if the user is an admin.
     """

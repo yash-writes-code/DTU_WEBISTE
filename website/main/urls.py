@@ -2,7 +2,7 @@ from django.urls import path
 from .views import *
 
 from django.shortcuts import redirect
-
+app_name="main"
 urlpatterns=[
     path("",home,name="home"),
     path("downloads/",lambda request: redirect("1/")),
